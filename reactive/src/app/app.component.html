@@ -1,0 +1,76 @@
+<div class="container" style="width:50%">
+  <form [formGroup]="regform">
+    <label>First Name</label>
+    <input type="text" class="form-control" formControlName="fname">
+    <span style="color:red" *ngIf="regform.get('fname').invalid && regform.get('fname').touched">
+    <span style="color:red" *ngIf="regform.get('fname').errors.required">First name is required</span>
+    <span style="color:red" *ngIf="regform.get('fname').errors.pattern">Enter valid Fname</span>
+    </span><br>
+    <label>Last Name</label>
+    <input type="text" class="form-control" formControlName="lname">
+    <span style="color:red" *ngIf="regform.get('lname').invalid && regform.get('lname').touched">
+        <span style="color:red" *ngIf="regform.get('lname').errors.required">Last name is required</span>
+        <span style="color:red" *ngIf="regform.get('lname').errors.pattern">Enter valid Lname</span>
+        </span><br>
+    <label>Email</label>
+    <input type="text" class="form-control" formControlName="email">
+    <span style="color:red" *ngIf="regform.get('email').invalid && regform.get('email').touched">
+        <span style="color:red" *ngIf="regform.get('email').errors.required">Email is required</span>
+        <span style="color:red" *ngIf="regform.get('email').errors.pattern">Enter valid email</span>
+        </span><br>
+    <label>password</label>
+    <input type="text" class="form-control" formControlName="password">
+    <span style="color:red" *ngIf="regform.get('password').invalid && regform.get('password').touched">
+        <span style="color:red" *ngIf="regform.get('password').errors.required">password is required</span>
+        <span style="color:red" *ngIf="regform.get('password').errors.pattern"> Password must be between 4 and 8 digits long and include at least one numeric digit.</span>
+        </span><br>
+    <label>Phone Number</label>
+    <input type="text" class="form-control" formControlName="pnumber">
+    <span style="color:red" *ngIf="regform.get('pnumber').invalid && regform.get('pnumber').touched">
+        <span style="color:red" *ngIf="regform.get('pnumber').errors.required">Phone Number is required</span>
+        <span style="color:red" *ngIf="regform.get('pnumber').errors.pattern">Enter valid Phone number</span>
+        </span><br>
+    <label>Pan Card</label>
+    <input type="text" class="form-control" formControlName="pcard">
+    <span style="color:red" *ngIf="regform.get('pcard').invalid && regform.get('pcard').touched">
+        <span style="color:red" *ngIf="regform.get('pcard').errors.required">Pancard  is required</span>
+        <span style="color:red" *ngIf="regform.get('pcard').errors.pattern">Enter valid Pancard</span>
+        </span><br>
+    <button class="btn btn-success" (click)="savedata(regform.value)">Submit</button>&nbsp;
+    <button class="btn btn-danger" (click)="regform.reset()">Reset</button>&nbsp;
+    <button class="btn btn-success" (click)="updatedata()">update</button>
+  </form>
+</div>
+<br>
+<div class="container" style="width:50%">
+            
+  <table class="table">
+    <thead>
+      <tr>
+        <th>sno</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>password</th>
+        <th>Phone Number</th>
+        <th>Pan Card</th>
+       <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of empList,let i=index;">
+        <td>{{i+1}}</td>
+        <td>{{emp.fname}}</td>
+        <td>{{emp.lname}}</td>
+        <td>{{emp.email}}</td>
+        <td>{{emp.password}}</td>
+        <td>{{emp.pnumber}}</td>
+        <td>{{emp.pcard}}</td>
+        <td><button class="btn btn-success" (click)="deldata(i)">Delete</button></td>&nbsp;
+        <td><button class="btn btn-success" (click)="editdata(emp,i)">Edit</button></td>
+        
+      </tr>
+      </tbody>
+      </table>
+      </div>
+<router-outlet></router-outlet>
